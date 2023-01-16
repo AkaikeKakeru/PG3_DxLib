@@ -1,88 +1,87 @@
 #include "DxLib.h"
 
-// ƒEƒBƒ“ƒhƒE‚Ìƒ^ƒCƒgƒ‹‚É•\Ž¦‚·‚é•¶Žš—ñ
-const char TITLE[] = "xx2x_xx_ƒiƒ}ƒG: ƒ^ƒCƒgƒ‹";
+// ã‚¿ã‚¤ãƒˆãƒ«
+const char TITLE[] = "LE2B_01_Akaike_Kakeru_PG3";
 
-// ƒEƒBƒ“ƒhƒE‰¡•
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¨ªå¹…
 const int WIN_WIDTH = 600;
 
-// ƒEƒBƒ“ƒhƒEc•
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç¸¦å¹…
 const int WIN_HEIGHT = 400;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine,
-                   _In_ int nCmdShow) {
-	// ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚ÉÝ’è
+	_In_ int nCmdShow) {
+
+
 	ChangeWindowMode(TRUE);
 
-	// ƒEƒBƒ“ƒhƒEƒTƒCƒY‚ðŽè“®‚Å‚Í•ÏX‚³‚¹‚¸A
-	// ‚©‚ÂƒEƒBƒ“ƒhƒEƒTƒCƒY‚É‡‚í‚¹‚ÄŠg‘å‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã®å¤‰åŒ–ã‚’ç„¡åŠ¹ã«(å›ºå®šåŒ–)
 	SetWindowSizeChangeEnableFlag(FALSE, FALSE);
 
-	// ƒ^ƒCƒgƒ‹‚ð•ÏX
+	// ã‚¿ã‚¤ãƒˆãƒ«ã‚»ãƒƒãƒˆ
 	SetMainWindowText(TITLE);
 
-	// ‰æ–ÊƒTƒCƒY‚ÌÅ‘åƒTƒCƒYAƒJƒ‰[ƒrƒbƒg”‚ðÝ’è(ƒ‚ƒjƒ^[‚Ì‰ð‘œ“x‚É‡‚í‚¹‚é)
+	//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 	SetGraphMode(WIN_WIDTH, WIN_HEIGHT, 32);
 
-	// ‰æ–ÊƒTƒCƒY‚ðÝ’è(‰ð‘œ“x‚Æ‚Ì”ä—¦‚ÅÝ’è)
+	// æ‹¡å¼µçŽ‡ã‚»ãƒƒãƒˆ
 	SetWindowSizeExtendRate(1.0);
 
-	// ‰æ–Ê‚Ì”wŒiF‚ðÝ’è‚·‚é
+	// èƒŒæ™¯è‰²ã‚»ãƒƒãƒˆ
 	SetBackgroundColor(0x00, 0x00, 0x00);
 
-	// DXlib‚Ì‰Šú‰»
+	// DXlibåˆæœŸåŒ–
 	if (DxLib_Init() == -1) { return -1; }
 
-	// (ƒ_ƒuƒ‹ƒoƒbƒtƒ@)•`‰ææƒOƒ‰ƒtƒBƒbƒN—Ìˆæ‚Í— –Ê‚ðŽw’è
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æç”»
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	// ‰æ‘œ‚È‚Ç‚ÌƒŠƒ\[ƒXƒf[ƒ^‚Ì•Ï”éŒ¾‚Æ“Ç‚Ýž‚Ý
+	// ã“ã“ã¾ã§åˆæœŸè¨­å®š
 
 
-	// ƒQ[ƒ€ƒ‹[ƒv‚ÅŽg‚¤•Ï”‚ÌéŒ¾
+	// ã“ã“ã‹ã‚‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
 
-	// ÅV‚ÌƒL[ƒ{[ƒhî•ñ—p
+	// ç¾ã‚­ãƒ¼å…¥åŠ›
 	char keys[256] = {0};
 
-	// 1ƒ‹[ƒv(ƒtƒŒ[ƒ€)‘O‚ÌƒL[ƒ{[ƒhî•ñ
+	// 1Få‰ã®ã‚­ãƒ¼å…¥åŠ›
 	char oldkeys[256] = {0};
 
-	// ƒQ[ƒ€ƒ‹[ƒv
+	// ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—
 	while (true) {
-		// ÅV‚ÌƒL[ƒ{[ƒhî•ñ‚¾‚Á‚½‚à‚Ì‚Í1ƒtƒŒ[ƒ€‘O‚ÌƒL[ƒ{[ƒhî•ñ‚Æ‚µ‚Ä•Û‘¶
-		// ÅV‚ÌƒL[ƒ{[ƒhî•ñ‚ðŽæ“¾
+		//ã‚­ãƒ¼å…¥åŠ›ã‚’å–å¾—
 		GetHitKeyStateAll(keys);
 
-		// ‰æ–ÊƒNƒŠƒA
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä¸€æ—¦çœŸã£æ–°ã«
 		ClearDrawScreen();
-		//---------  ‚±‚±‚©‚çƒvƒƒOƒ‰ƒ€‚ð‹Lq  ----------//
+		//---------  ã“ã“ã‹ã‚‰ãŒæœ¬å‘½å‡¦ç†  ----------//
 
-		// XVˆ—
+		// æ›´æ–°
 
 
-		// •`‰æˆ—
+		// æç”»
 
-		//---------  ‚±‚±‚Ü‚Å‚ÉƒvƒƒOƒ‰ƒ€‚ð‹Lq  ---------//
-		// (ƒ_ƒuƒ‹ƒoƒbƒtƒ@)— –Ê
+		//--------- ã“ã“ã¾ã§ãŒæœ¬å‘½å‡¦ç† ---------//
+		// ç”»é¢ãƒ•ãƒªãƒƒãƒ—
 		ScreenFlip();
 
-		// 20ƒ~ƒŠ•b‘Ò‹@(‹^Ž—60FPS)
+		// 20Fã»ã©å¾…æ©Ÿ
 		WaitTimer(20);
 
-		// WindowsƒVƒXƒeƒ€‚©‚ç‚­‚éî•ñ‚ðˆ—‚·‚é
+		// ä¸­æ–­ä¾é ¼ãŒã‚ã£ãŸã‚‰çµ‚äº†
 		if (ProcessMessage() == -1) {
 			break;
 		}
 
-		// ESCƒL[‚ª‰Ÿ‚³‚ê‚½‚çƒ‹[ƒv‚©‚ç”²‚¯‚é
+		// ESCã‚­ãƒ¼å…¥åŠ›ã•ã‚Œã¦ã‚‚çµ‚äº†
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) {
 			break;
 		}
 	}
-	// Dxƒ‰ƒCƒuƒ‰ƒŠI—¹ˆ—
+	// DxLibå¾Œå§‹æœ«
 	DxLib_End();
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0;
 }
