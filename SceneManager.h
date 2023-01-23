@@ -2,6 +2,7 @@
 
 class SceneManager final {
 public :
+    //シーン番号
     enum sceneNom{
         title_num,
         newGame_num,
@@ -19,10 +20,23 @@ private:
     /// シーン変更
     /// </summary>
     /// <param name="nextSceneNom">次のシーン番号</param>
-    void ChangeScene(int nextSceneNom){ nowSceneNom_ = nextSceneNom; };
+    void ChangeScene(int nextSceneNom) ;
+
+    /// <summary>
+    /// シーン番号取得
+    /// </summary>
+    /// <param name="nowSceneNom">シーン番号</param>
+    /// <returns>シーン番号</returns>
+    int GetSceneNom(int nowSceneNom) { return nowSceneNom_; }
 
 private:
+    //シーン名
+    const char* sceneName = "Title";
+    //テキストの色
+    unsigned int color = 0;
+    //今のシーン番号
     int nowSceneNom_ = title_num;
+
 private:
     //コンストラクタをprivateにする
     SceneManager() = default;
