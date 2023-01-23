@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include "SceneManager.h"
 
 // タイトル
 const char TITLE[] = "LE2B_01_Akaike_Kakeru_PG3";
@@ -41,15 +42,26 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	// ここからプログラム
 
+	//変数宣言
+	SceneManager* sceneManager_ = SceneManager::GetInstance();
+
+	//キーの全種類数
+	const int kKeyCount = 256;
 
 	// 現キー入力
-	char keys[256] = {0};
+	char keys[kKeyCount] = { 0 };
 
 	// 1F前のキー入力
-	char oldkeys[256] = {0};
+	char oldkeys[kKeyCount] = { 0 };
+
 
 	// ゲームループ
 	while (true) {
+
+		for (size_t i = 0; i < kKeyCount; i++) {
+			oldkeys[i] = keys[i];
+		}
+
 		//キー入力を取得
 		GetHitKeyStateAll(keys);
 
@@ -58,9 +70,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//---------  ここからが本命処理  ----------//
 
 		// 更新
-
+		if (keys[KEY_INPUT_SPACE] == 0 &&
+			oldkeys[KEY_INPUT_SPACE] == 1) {
+			sceneManager_->Update();
+		}
 
 		// 描画
+
+		sceneManager_->Draw();
 
 		//--------- ここまでが本命処理 ---------//
 		// 画面フリップ
@@ -79,6 +96,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			break;
 		}
 	}
+
 	// DxLib後始末
 	DxLib_End();
 
